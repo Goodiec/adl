@@ -3,37 +3,50 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/android:2023.02
+      - image: circleci/android:api-28-node8-alpha
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies-
       - run:
           name: Install dependencies
-          command: ./gradlew androidDependencies
-          
-      - save_cache:
-          paths:
-            - ~/.gradle
-            - ~/.android
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-      
+          command: |
+            sudo add-apt-repository ppa:openjdk-r/ppa \
+            sudo apt-get update && sudo apt-get install -y \
+              openjdk-11-jdk \
+              wget \
+              unzip 
+            wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+            unzip -q sdk-tools-linux-4333796.zip -d android-sdk-linux
+            echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-29" "build-tools;29.0.3"
+      - run:
+          name: Set up environment variables
+          command: |
+            echo 'export ANDROID_HOME=/home/circleci/project/android-sdk-linux' >> $BASH_ENV
+            echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools' >> $BASH_ENV
+      - run:
+          name: Install Android Studio
+          command: |
+            wget https://dl.google.com/dl/android/studio/ide-zips/4.1.3.0/android-studio-ide-201.7199119-linux.tar.gz
+            tar -xzf android-studio-ide-201.7199119-linux.tar.gz
       - run:
           name: Build project
           command: ./gradlew clean assemble
       - run:
           name: Run unit tests
           command: ./gradlew test
-
+      
       - run:
           name: Deploy to GitHub Packages
           command: |
-            mvn deploy -Dregistry=https://maven.pkg.github.com/Goodiec/adl \
-              -DaltDeploymentRepository=github::https://maven.pkg.github.com/Goodiec/_adl \
-              -Dusername=${GITHUB_USERNAME} -Dpassword=${GITHUB_TOKEN}
-          
+            echo 'machine github.com login USERNAME password TOKEN' >> ~/.netrc
+            ./gradlew publish -Pversion=${CIRCLE_TAG} -PpublishUrl=https://maven.pkg.github.com/Goodiec/adl
+          environment:
+            USERNAME: GITHUB_USERNAME
+            TOKEN: GITHUB_TOKEN
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
 workflows:
   build:
     jobs:
