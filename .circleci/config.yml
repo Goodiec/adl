@@ -33,16 +33,16 @@ jobs:
       - run:
           name: Run unit tests
           command: ./gradlew test
-      # - deploy:
-      #     name: Deploy to GitHub Packages
-      #     command: |
-      #       echo 'machine github.com login USERNAME password TOKEN' >> ~/.netrc
-      #       ./gradlew publish -Pversion=${CIRCLE_TAG} -PpublishUrl=https://maven.pkg.github.com/OWNER/REPOSITORY
-      #     environment:
-      #       USERNAME: YOUR_GITHUB_USERNAME
-      #       TOKEN: YOUR_GITHUB_TOKEN
-      #     requires:
-      #       - build
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
+      - deploy:
+          name: Deploy to GitHub Packages
+          command: |
+            echo 'machine github.com login USERNAME password TOKEN' >> ~/.netrc
+            ./gradlew publish -Pversion=${CIRCLE_TAG} -PpublishUrl=https://maven.pkg.github.com/goodiec/adl
+          environment:
+            USERNAME: YOUR_GITHUB_USERNAME
+            TOKEN: YOUR_GITHUB_TOKEN
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
