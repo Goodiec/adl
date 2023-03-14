@@ -27,17 +27,15 @@ jobs:
           name: Run unit tests
           command: ./gradlew test
 
-       - run:
+      - run:
           name: Deploy to GitHub Packages
           command: |
             mvn deploy -Dregistry=https://maven.pkg.github.com/Goodiec/adl \
-              -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/Goodiec/adl \
+              -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/Goodiec/_adl \
               -Dusername=${GITHUB_USERNAME} -Dpassword=${GITHUB_TOKEN}
-          
     environment:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-
 workflows:
   build:
     jobs:
