@@ -7,7 +7,7 @@
     <groupId>org.android</groupId>
     <artifactId>androidlibrary</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>apk</packaging>
+    <packaging>aar</packaging>
 
     <properties>
         <android.targetSdkVersion>29</android.targetSdkVersion>
@@ -27,19 +27,5 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/goodiec/adl</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-        <id>github</id>
-        <name>GitHub Goodiec Apache Maven Packages</name>
-        <url>https://maven.pkg.github.com/goodiec/adl</url>
-        </repository>
-    </distributionManagement>
 
 </project>
