@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.android</groupId>
+    <artifactId>androidlibrary</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>apk</packaging>
+
+    <properties>
+        <android.targetSdkVersion>29</android.targetSdkVersion>
+        <android.compileSdkVersion>29</android.compileSdkVersion>
+        <android.minSdkVersion>21</android.minSdkVersion>
+        <supportLibVersion>29.0.0</supportLibVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.android</groupId>
+            <artifactId>androidlibrary</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+        <plugin>
+            <groupId>com.github.dcendents</groupId>
+            <artifactId>android-maven-gradle-plugin</artifactId>
+            <version>2.1</version>
+            <extensions>true</extensions>
+        </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/goodiec/adl</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+        <id>github</id>
+        <name>GitHub Goodiec Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/goodiec/adl</url>
+        </repository>
+    </distributionManagement>
+
+</project>
