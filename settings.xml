@@ -1,0 +1,7 @@
+<repositories>
+    <repository>
+        <id>github</id>
+        <name>GitHub Goodiec Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/Goodeic/adl</url>
+    </repository>
+</repositories>

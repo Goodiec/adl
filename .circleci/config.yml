@@ -44,9 +44,6 @@ jobs:
             TOKEN: GITHUB_TOKEN
           requires:
             - build
-          filters:
-            tags:
-              only: /^v.*/
 workflows:
   build:
     jobs:
