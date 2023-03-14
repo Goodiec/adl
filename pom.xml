@@ -16,14 +16,6 @@
         <supportLibVersion>29.0.0</supportLibVersion>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.android</groupId>
-            <artifactId>androidlibrary</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
         <plugin>
