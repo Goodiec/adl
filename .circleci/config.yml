@@ -31,7 +31,7 @@ jobs:
           name: Deploy to GitHub Packages
           command: |
             mvn deploy -Dregistry=https://maven.pkg.github.com/Goodiec/adl \
-              -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/Goodiec/_adl \
+              -DaltDeploymentRepository=github::https://maven.pkg.github.com/Goodiec/_adl \
               -Dusername=${GITHUB_USERNAME} -Dpassword=${GITHUB_TOKEN}
           
 workflows:
