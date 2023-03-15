@@ -11,6 +11,9 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies-
       - run:
+          name: Create local.properties file
+          command: printf “gpr.usr=$GITHUB_USERNAME\ngpr.key=$GITHUB_TOKEN” >> ~/code/local.properties
+      - run:
           name: Install dependencies
           command: ./gradlew androidDependencies
           
@@ -30,7 +33,7 @@ jobs:
       - run:
           name: Deploy to GitHub Packages
           command: |
-            gradle publish -Pusername=${GITHUB_USERNAME} -Ppassword=${GITHUB_TOKEN}
+            mvn clean deploy
 
 workflows:
   build:
