@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/openjdk:19.0.2-node
+      - image: android:2022.08.1
     steps:
       - checkout
       - run:
