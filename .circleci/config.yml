@@ -30,9 +30,9 @@ jobs:
       - run:
           name: Deploy to GitHub Packages
           command: |
+            mvn clean package -DskipTests
             mvn deploy \
               -Dmaven.test.skip=true \
-              -DskipTests \
               -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/Goodiec/adl \
               -DrepositoryId=github \
               -Durl=https://maven.pkg.github.com/Goodiec/adl \
@@ -41,7 +41,6 @@ jobs:
               -Dsources=target/androidlibrary-1.0-SNAPSHOT.jar \
               -Djavadoc=target/androidlibrary-1.0-SNAPSHOT.jar \
               -Dgpg.skip=true \
-              -Dmaven.deploy.skip=true \
               -Dmaven.wagon.http.ssl.insecure=true \
               -Dmaven.wagon.http.ssl.allowall=true \
               -Dgithub.token=${GITHUB_TOKEN}
