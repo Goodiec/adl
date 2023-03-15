@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/project
     docker:
       machine:
-      - image: android:2022.08.1
+      - image: android:202102-01
     steps:
       - checkout
       - run:
