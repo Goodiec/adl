@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/android:api-28-node8-alpha
+      - image: cimg/openjdk:19.0.2
     steps:
       - checkout
       - run:
