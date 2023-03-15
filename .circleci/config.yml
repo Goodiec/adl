@@ -41,6 +41,8 @@ jobs:
               -Dsources=target/androidlibrary-1.0-SNAPSHOT.jar \
               -Djavadoc=target/androidlibrary-1.0-SNAPSHOT.jar \
               -Dgpg.skip=true
+    environment:
+      MAVEN_OPTS: "-Xmx2048m"
 
 workflows:
   build:
