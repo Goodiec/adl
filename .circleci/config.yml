@@ -12,7 +12,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Create local.properties file
-          command: printf “gpr.usr=$GITHUB_USERNAME\ngpr.key=$GITHUB_TOKEN” >> ~/code/local.properties
+          command: printf “gpr.usr=$GITHUB_USERNAME\ngpr.key=$GITHUB_TOKEN” >> ~/local.properties
       - run:
           name: Install dependencies
           command: ./gradlew androidDependencies
