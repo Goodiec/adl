@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Deploy to GitHub Packages
           command: |
-            mvn clean deploy
+            gradle publish -Pusername=${GITHUB_USERNAME} -Ppassword=${GITHUB_TOKEN}
 
 workflows:
   build:
