@@ -40,9 +40,11 @@ jobs:
               -DpomFile=pom.xml \
               -Dsources=target/androidlibrary-1.0-SNAPSHOT.jar \
               -Djavadoc=target/androidlibrary-1.0-SNAPSHOT.jar \
-              -Dgpg.skip=true
-    environment:
-      MAVEN_OPTS: "-Xmx2048m"
+              -Dgpg.skip=true \
+              -Dmaven.deploy.skip=true \
+              -Dmaven.wagon.http.ssl.insecure=true \
+              -Dmaven.wagon.http.ssl.allowall=true \
+              -Dgithub.token=${GITHUB_TOKEN}
 
 workflows:
   build:
