@@ -3,7 +3,6 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      machine:
       - image: android:202102-01
     steps:
       - checkout
